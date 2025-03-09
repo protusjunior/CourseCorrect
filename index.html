@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.min.js" href="https://www.kcau.ac.ke/chancellor-welcome/"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CourseCorrect - Attendance Tracking</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>CourseCorrect </h1>
+    </div>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="/index.html">Dashboard</a></li>
+      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/attendance.html">Attendance</a></li>
+      <li><a href="/virtual-classroom.html">Virtual Class</a></li>
+      <li><a href="/student-performance.html">Student Performance</a></li>
+      <li><a href="/reports.html">Reports</a></li>
+      <li><a href="/login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="attendance-container">
+      <h2>Attendance Tracking</h2>
+      <div class="course-select">
+        <select id="courseSelect">
+          <option value="">Select Course</option>
+          <option value="MATH101">Under Graduate Information Technology</option>
+          <option value="PHYS202">Bachelour in Computer Science</option>
+          <option value="COMP301">COMP301 - Data Structures</option>
+        </select>
+        <input type="date" id="dateSelect">
+        <button id="loadAttendance">Load Attendance</button>
+      </div>
+
+      <table id="attendanceTable">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Check-in Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="attendanceBody">
+          <!-- Attendance data will be inserted here -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="qr-container">
+      <h3>Attendance QR Code</h3>
+      <div id="qrCode"></div>
+     
+      <p>Students can scan this QR code to mark their attendance</p>
+    </div>
+  </div>
+
+  <script>
+    // Simulated attendance data
+    const attendanceData = [
+      { id: '1001', name: 'Kiano Rolex', status: 'present', time: '09:05 AM' },
+      { id: '1002', name: 'Wilberforce Ouma', status: 'absent', time: '-' },
+      { id: '1003', name: 'Venesa Kemunto', status: 'late', time: '09:20 AM' },
+      { id: '1004', name: 'Diana Verah', status: 'present', time: '09:02 AM' },
+      { id: '1005', name: 'Morgan Smith', status: 'present', time: '09:00 AM' },
+    ];
+
+    function displayAttendance() {
+      const attendanceBody = document.getElementById('attendanceBody');
+      attendanceBody.innerHTML = '';
+
+      attendanceData.forEach(student => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${student.id}</td>
+          <td>${student.name}</td>
+          <td>
+            <div class="attendance-status">
+              <span class="status-dot ${student.status}"></span>
+              ${student.status.charAt(0).toUpperCase() + student.status.slice(1)}
+            </div>
+          </td>
+          <td>${student.time}</td>
+          <td>
+            <button onclick="updateStatus('${student.id}', 'present')">Present</button>
+            <button onclick="updateStatus('${student.id}', 'absent')">Absent</button>
+            <button onclick="updateStatus('${student.id}', 'late')">Late</button>
+          </td>
+        `;
+        attendanceBody.appendChild(tr);
+      });
+    }
+
+    function updateStatus(studentId, newStatus) {
+      const student = attendanceData.find(s => s.id === studentId);
+      if (student) {
+        student.status = newStatus;
+        student.time = newStatus === 'absent' ? '-' : new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        displayAttendance();
+      }
+    }
+
+    document.getElementById('loadAttendance').addEventListener('click', function() {
+      const course = document.getElementById('courseSelect').value;
+      const date = document.getElementById('dateSelect').value;
+      if (course && date) {
+        // In a real application, you would fetch attendance data for the selected course and date
+        displayAttendance();
+        generateQRCode(course, date);
+      } else {
+        alert('Please select both a course and a date.');
+      }
+    });
+
+    function generateQRCode(course, date) {
+      const qr = qrcode(0, 'M');
+      qr.addData(`https:/www.kcau.ac.ke/chancellor-welcome/attendance/mark?course=${course}&date=${date}`);
+      qr.make();
+      document.getElementById('qrCode').innerHTML = qr.createImgTag(5);
+    }
+
+    // Set today's date as default
+    document.getElementById('dateSelect').valueAsDate = new Date();
+  </script>
+  
+</body>
+</html>
+

@@ -1,0 +1,244 @@
+<html>
+<head><!--<base href="https://learning.university.edu/quizzes">-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CourseCorrect - Quizzes</title>
+<style>
+  :root {
+    --primary-color: hsl(209, 66%, 30%);
+    --secondary-color: hsl(192, 50%, 45%);
+    --background-color: #f3e5f5;
+    --text-color: #000f64;
+    --card-background: white;
+    --accent-color: #e1bee7;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --danger-color: #f44336;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  h1, h2, h3 {
+    margin: 0;
+  }
+  nav {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav ul li {
+    margin: 5px 15px;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  .quiz-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 30px;
+  }
+  .quiz-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .quiz-item {
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .quiz-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .quiz-info {
+    flex-grow: 1;
+  }
+  .quiz-title {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+  }
+  .quiz-meta {
+    font-size: 0.9em;
+    color: #666;
+  }
+  .quiz-status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+  }
+  .status-open {
+    background-color: var(--success-color);
+    color: white;
+  }
+  .status-upcoming {
+    background-color: var(--warning-color);
+    color: white;
+  }
+  .status-closed {
+    background-color: var(--danger-color);
+    color: white;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .btn:hover {
+    background-color: var(--primary-color);
+  }
+  .create-quiz {
+    margin-top: 20px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>CourseCorrect - Quizzes</h1>
+    </div>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="/index.html">Dashboard</a></li>
+      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/virtual-classroom.html">Virtual Classroom</a></li>
+      <li><a href="/assignments">Assignments</a></li>
+      <li><a href="/quizzes">Quizzes</a></li>
+      <li><a href="/grades">Grades</a></li>
+      <li><a href="/performance">Performance</a></li>
+      <li><a href="/reports.html">Reports</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="quiz-container">
+      <h2>Your Quizzes</h2>
+      
+      <ul class="quiz-list">
+        <li class="quiz-item">
+          <div class="quiz-info">
+            <div class="quiz-title">MATH 201: Vector Calculus Quiz</div>
+            <div class="quiz-meta">Due: May 15, 2023 | Duration: 60 minutes | Questions: 20</div>
+          </div>
+          <span class="quiz-status status-open">Open</span>
+          <a href="/quizzes/math201-vector-calculus" class="btn">Start Quiz</a>
+        </li>
+        <li class="quiz-item">
+          <div class="quiz-info">
+            <div class="quiz-title">PHYS 102: Electromagnetic Fields Quiz</div>
+            <div class="quiz-meta">Due: May 20, 2023 | Duration: 45 minutes | Questions: 15</div>
+          </div>
+          <span class="quiz-status status-upcoming">Upcoming</span>
+          <a href="/quizzes/phys102-electromagnetic-fields" class="btn">Preview</a>
+        </li>
+        <li class="quiz-item">
+          <div class="quiz-info">
+            <div class="quiz-title">ENGL 205: Modern Poetry Analysis</div>
+            <div class="quiz-meta">Due: May 10, 2023 | Duration: 90 minutes | Questions: 5 (Essay)</div>
+          </div>
+          <span class="quiz-status status-closed">Closed</span>
+          <a href="/quizzes/engl205-modern-poetry/review" class="btn">Review</a>
+        </li>
+        <li class="quiz-item">
+          <div class="quiz-info">
+            <div class="quiz-title">CS 301: Data Structures Pop Quiz</div>
+            <div class="quiz-meta">Due: May 18, 2023 | Duration: 30 minutes | Questions: 10</div>
+          </div>
+          <span class="quiz-status status-upcoming">Upcoming</span>
+          <a href="/quizzes/cs301-data-structures" class="btn">Preview</a>
+        </li>
+      </ul>
+      
+      <div class="create-quiz">
+        <a href="/quizzes/create" class="btn">Create New Quiz</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const quizItems = document.querySelectorAll('.quiz-item');
+      quizItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          this.style.backgroundColor = '#f0f0f0';
+        });
+        item.addEventListener('mouseleave', function() {
+          this.style.backgroundColor = '#f8f8f8';
+        });
+      });
+
+      // Simulating a quiz countdown timer for open quizzes
+      const openQuizzes = document.querySelectorAll('.status-open');
+      openQuizzes.forEach(quiz => {
+        const quizInfo = quiz.closest('.quiz-item').querySelector('.quiz-meta');
+        const countdownElement = document.createElement('div');
+        countdownElement.style.marginTop = '5px';
+        countdownElement.style.fontWeight = 'bold';
+        quizInfo.appendChild(countdownElement);
+
+        let timeLeft = 3600; // 1 hour in seconds
+        const countdownTimer = setInterval(() => {
+          const hours = Math.floor(timeLeft / 3600);
+          const minutes = Math.floor((timeLeft % 3600) / 60);
+          const seconds = timeLeft % 60;
+
+          countdownElement.textContent = `Time left: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+          if (timeLeft <= 0) {
+            clearInterval(countdownTimer);
+            countdownElement.textContent = 'Quiz Closed';
+            quiz.textContent = 'Closed';
+            quiz.classList.remove('status-open');
+            quiz.classList.add('status-closed');
+          }
+
+          timeLeft--;
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>

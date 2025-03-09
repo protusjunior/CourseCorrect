@@ -1,0 +1,262 @@
+<html><head><base href="https://learning.university.edu/reports">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniLearn Pro - Student Reports</title>
+<style>
+  :root {
+    --primary-color: #1565c0;
+    --secondary-color: #1976d2;
+    --background-color: #e3f2fd;
+    --text-color: #0d47a1;
+    --card-background: white;
+    --accent-color: #bbdefb;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --danger-color: #f44336;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  h1, h2, h3 {
+    margin: 0;
+  }
+  nav {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav ul li {
+    margin: 5px 15px;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  .reports-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 30px;
+  }
+  .report-card {
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+  .report-card:hover {
+    transform: translateY(-5px);
+  }
+  .report-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+  .report-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .report-info {
+    flex-grow: 1;
+  }
+  .report-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .btn-view {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  .btn-view:hover {
+    background-color: #0d47a1;
+  }
+  .btn-download {
+    background-color: var(--success-color);
+    color: white;
+  }
+  .btn-download:hover {
+    background-color: #45a049;
+  }
+  .report-status {
+    font-weight: bold;
+  }
+  .status-available { color: var(--success-color); }
+  .status-processing { color: var(--warning-color); }
+  .status-unavailable { color: var(--danger-color); }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>UniLearn Pro - Student Reports</h1>
+    </div>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/courses">Courses</a></li>
+      <li><a href="/virtual-classroom">Virtual Classroom</a></li>
+      <li><a href="/assignments">Assignments</a></li>
+      <li><a href="/quizzes">Quizzes</a></li>
+      <li><a href="/grades">Grades</a></li>
+      <li><a href="/performance">Performance</a></li>
+      <li><a href="/reports">Reports</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="reports-container">
+      <h2>Available Reports</h2>
+      
+      <div class="report-card">
+        <h3>Semester Progress Report</h3>
+        <div class="report-details">
+          <div class="report-info">
+            <p>Last updated: May 15, 2023</p>
+            <p class="report-status status-available">Status: Available</p>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-view">View Report</button>
+            <button class="btn btn-download">Download PDF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="report-card">
+        <h3>Course Completion Certificate</h3>
+        <div class="report-details">
+          <div class="report-info">
+            <p>Course: COMP 101 - Introduction to Programming</p>
+            <p class="report-status status-available">Status: Available</p>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-view">View Certificate</button>
+            <button class="btn btn-download">Download PDF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="report-card">
+        <h3>Academic Transcript</h3>
+        <div class="report-details">
+          <div class="report-info">
+            <p>Period: Fall 2022 - Spring 2023</p>
+            <p class="report-status status-processing">Status: Processing</p>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-view" disabled>View Report</button>
+            <button class="btn btn-download" disabled>Download PDF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="report-card">
+        <h3>Attendance Report</h3>
+        <div class="report-details">
+          <div class="report-info">
+            <p>Period: Spring 2023</p>
+            <p class="report-status status-available">Status: Available</p>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-view">View Report</button>
+            <button class="btn btn-download">Download PDF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="report-card">
+        <h3>Performance Analytics</h3>
+        <div class="report-details">
+          <div class="report-info">
+            <p>Last updated: May 10, 2023</p>
+            <p class="report-status status-available">Status: Available</p>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-view">View Analytics</button>
+            <button class="btn btn-download">Download PDF</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="report-card">
+        <h3>Internship Eligibility Report</h3>
+        <div class="report-details">
+          <div class="report-info">
+            <p>For: Summer 2023</p>
+            <p class="report-status status-unavailable">Status: Not yet available</p>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-view" disabled>View Report</button>
+            <button class="btn btn-download" disabled>Download PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const viewButtons = document.querySelectorAll('.btn-view');
+      const downloadButtons = document.querySelectorAll('.btn-download');
+      
+      viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          if (!this.disabled) {
+            const reportName = this.closest('.report-card').querySelector('h3').textContent;
+            alert(`Viewing report: ${reportName}`);
+            // Here you would typically open a modal or navigate to a new page to show the report
+          }
+        });
+      });
+      
+      downloadButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          if (!this.disabled) {
+            const reportName = this.closest('.report-card').querySelector('h3').textContent;
+            alert(`Downloading report: ${reportName}`);
+            // Here you would typically trigger the download of the PDF file
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

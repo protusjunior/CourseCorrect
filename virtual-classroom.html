@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CourseCorrect - Virtual Classroom (Purple Theme)</title>
+<style>
+  :root {
+    --primary-color: hsl(209, 66%, 30%);
+    --secondary-color: hsl(192, 50%, 45%);
+    --background-color: #f3e5f5;
+    --text-color: hsl(209, 66%, 30%);
+    --card-background: white;
+    --accent-color: #e1bee7;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  h1, h2, h3 {
+    margin: 0;
+  }
+  nav {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: right;
+  }
+  nav ul li {
+    margin: 0 15px;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  .virtual-classroom {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .video-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  .video-frame {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .video-frame video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: hsl(209, 66%, 30%);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: var(--primary-color);
+  }
+  .participants {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  .participant {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .participant-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    margin-right: 10px;
+  }
+  .chat-container {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .chat-input {
+    display: flex;
+  }
+  .chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  .audio-only-toggle {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  input:checked + .slider {
+    background-color: var(--secondary-color);
+  }
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>CourseCorrect - Virtual Class</h1>
+    </div>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="/index.html">Dashboard</a></li>
+      <li><a href="/courses.html">Courses</a></li>
+      <li><a href="/attendance.html">Attendance</a></li>
+      <li><a href="/reports.html">Reports</a></li>
+      <li><a href="/settings.html">Settings</a></li>
+     
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Current Class: Introduction to Computer Science</h2>
+    
+    <div class="virtual-classroom">
+      <div class="video-container">
+        <div class="video-frame">
+          <video id="classVideo" autoplay muted>
+            <source src="https://example.com/live-class-stream" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="controls">
+          <button class="btn" id="muteBtn">Mute</button>
+          <button class="btn" id="videoBtn">Turn Off Video</button>
+          <button class="btn" id="shareScreenBtn">Share Screen</button>
+          <button class="btn" id="raiseHandBtn">Raise Hand</button>
+        </div>
+        <div class="audio-only-toggle">
+          <label>Audio Only Mode:</label>
+          <label class="switch">
+            <input type="checkbox" id="audioOnlyToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="participants">
+        <h3>Participants (25)</h3>
+        <div class="participant">
+          <div class="participant-avatar"></div>
+          <span>John Doe (You)</span>
+        </div>
+        <div class="participant">
+          <div class="participant-avatar"></div>
+          <span>Jane Smith</span>
+        </div>
+        <div class="participant">
+          <div class="participant-avatar"></div>
+          <span>Alice Johnson</span>
+        </div>
+        <!-- More participants... -->
+      </div>
+    </div>
+    
+    <div class="chat-container">
+      <h3>Class Chat</h3>
+      <div class="chat-messages" id="chatMessages">
+        <!-- Chat messages will be dynamically added here -->
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Type your message...">
+        <button class="btn" id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simulating dynamic chat
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function addChatMessage(sender, message) {
+      const messageElement = document.createElement('p');
+      messageElement.textContent = `${sender}: ${message}`;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const message = chatInput.value.trim();
+      if (message) {
+        addChatMessage('You', message);
+        chatInput.value = '';
+      }
+    });
+
+    // Simulating incoming messages
+    setTimeout(() => addChatMessage('Jane Smith', 'Hello everyone!'), 2000);
+    setTimeout(() => addChatMessage('Alice Johnson', 'Hi Jane! Excited for today\'s class.'), 4000);
+
+    // Audio Only Mode Toggle
+    const audioOnlyToggle = document.getElementById('audioOnlyToggle');
+    const classVideo = document.getElementById('classVideo');
+
+    audioOnlyToggle.addEventListener('change', () => {
+      if (audioOnlyToggle.checked) {
+        classVideo.style.display = 'none';
+      } else {
+        classVideo.style.display = 'block';
+      }
+    });
+
+    // Mute button functionality
+    const muteBtn = document.getElementById('muteBtn');
+    muteBtn.addEventListener('click', () => {
+      classVideo.muted = !classVideo.muted;
+      muteBtn.textContent = classVideo.muted ? 'Unmute' : 'Mute';
+    });
+
+    // Video button functionality
+    const videoBtn = document.getElementById('videoBtn');
+    videoBtn.addEventListener('click', () => {
+      // In a real implementation, this would toggle the user's camera
+      videoBtn.textContent = videoBtn.textContent === 'Turn Off Video' ? 'Turn On Video' : 'Turn Off Video';
+    });
+
+    // Raise Hand button functionality
+    const raiseHandBtn = document.getElementById('raiseHandBtn');
+    raiseHandBtn.addEventListener('click', () => {
+      alert('You raised your hand. The instructor has been notified.');
+    });
+
+    // Share Screen button functionality
+    const shareScreenBtn = document.getElementById('shareScreenBtn');
+    shareScreenBtn.addEventListener('click', () => {
+      alert('Screen sharing functionality would be implemented here.');
+    });
+  </script>
+</body>
+</html>
